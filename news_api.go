@@ -41,6 +41,7 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 	}
 
 	const NewsAPIEndPoint = "https://newsapi.org/v2/everything"
+	const APIKeyReqHeader = "X-Api-Key"
 
 	rand.Seed(time.Now().UnixNano())
 	var sourcesList = strings.Split(na.NewsSources, string(","))
@@ -69,7 +70,7 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 	// request and response here
 	url := fmt.Sprintf("%s?%s", NewsAPIEndPoint, urlArgs.Encode())
 	req, err := http.NewRequest("GET", url, nil)
-	req.Header.Add("X-Api-Key", na.NewsAPIKey)
+	req.Header.Add(APIKeyReqHeader, na.NewsAPIKey)
 	resp, err := na.httpClient.Do(req)
 
 	if err != nil {

@@ -79,7 +79,8 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 	}
 
 	if resp.StatusCode != 200 {
-		log.Println("Error while requesting %s ", url, resp.Status)
+		log.Printf("Error while requesting %s", url)
+		log.Printf("Response code %s ", resp.Status)
 		return nil, errors.New(resp.Status)
 	}
 

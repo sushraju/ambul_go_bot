@@ -73,10 +73,12 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 	resp, err := na.httpClient.Do(req)
 
 	if err != nil {
+		log.Println("Error while making a request: ", err)
 		return nil, err
 	}
 
 	if resp.StatusCode != 200 {
+		log.Println("Error while requesting %s ", url, resp.Status)
 		return nil, errors.New(resp.Status)
 	}
 
@@ -88,6 +90,7 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 	err = json.NewDecoder(resp.Body).Decode(newsArticles)
 
 	if err != nil {
+		log.Println("Error while decoding json: ", err)
 		return nil, err
 	}
 

@@ -40,20 +40,25 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 		log.Fatal("News API access has not been configured.")
 	}
 
-	const NewsAPIEndPoint = "https://newsapi.org/v2/everything"
-	const APIKeyReqHeader = "X-Api-Key"
+	const (
+		NewsAPIEndPoint = "https://newsapi.org/v2/everything"
+		APIKeyReqHeader = "X-Api-Key"
+	)
 
 	rand.Seed(time.Now().UnixNano())
-	var sourcesList = strings.Split(na.NewsSources, string(","))
-	var sourcesLen = len(sourcesList) - 1
-	var sources = sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)]
+	var (
+		sourcesList = strings.Split(na.NewsSources, string(","))
+		sourcesLen  = len(sourcesList) - 1
+		sources     = sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)]
+	)
 
 	time.LoadLocation("America/Los_Angeles")
-	var dt = time.Now().Format("2006-01-02")
-
-	var lang = "en"
-	var sortBy = "relevancy"
-	var numPages = 1
+	var (
+		dt       = time.Now().Format("2006-01-02")
+		lang     = "en"
+		sortBy   = "relevancy"
+		numPages = 1
+	)
 
 	options := NewsAPIOptions{
 		Sources:       sources,

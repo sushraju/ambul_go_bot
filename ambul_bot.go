@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -12,17 +13,20 @@ func main() {
 	err := bc.InitializeNewsBot()
 
 	if err != nil {
-		log.Fatal("Error in initializing bot %s", err.Error)
+		fmt.Fprintf(os.Stderr, "Error initializing bot: %v\n", err)
+		os.Exit(1)
 	}
 
 	// set loggers
-	file, err := os.OpenFile("ambul_bot.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+	f, err := os.OpenFile("ambul_bot.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		log.Fatal("Error setting up log: ", err)
+		fmt.Fprintf(os.Stderr, "Error setting up log: %v\n", err)
+		os.Exit(1)
 	}
 
-	log.SetOutput(file)
-	defer file.Close()
+	log.SetOutput(f)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	defer f.Close()
 
 	// fetch news articles
 	newsArticles := new(NewsArticles)

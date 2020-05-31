@@ -52,6 +52,8 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 		sources     = sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)]
 	)
 
+	log.Println("Sources to fetch news from: ", sources)
+
 	time.LoadLocation("America/Los_Angeles")
 	var (
 		dt       = time.Now().Format("2006-01-02")

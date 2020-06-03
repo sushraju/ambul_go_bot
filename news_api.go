@@ -48,7 +48,7 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 	rand.Seed(time.Now().UnixNano())
 	var (
 		sourcesList = strings.Split(na.NewsSources, string(","))
-		sourcesLen  = len(sourcesList) - 1
+		sourcesLen  = len(sourcesList)
 		sources     = sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)] + string(',') + sourcesList[rand.Intn(sourcesLen-0)]
 	)
 

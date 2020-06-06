@@ -16,12 +16,12 @@ import (
 
 // NewsAPIOptions struct for options sent to the NewsApi endpoint
 type NewsAPIOptions struct {
-	Sources       string
-	FromDate      string
-	ToDate        string
-	Language      string
-	SortType      string
-	NumberOfPages int
+	Sources  string
+	From     string
+	To       string
+	Language string
+	SortBy   string
+	Page     int
 }
 
 // NewsArticles list of Articles
@@ -63,12 +63,12 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 	)
 
 	options := NewsAPIOptions{
-		Sources:       sources,
-		FromDate:      dt,
-		ToDate:        dt,
-		Language:      lang,
-		SortType:      sortBy,
-		NumberOfPages: numPages,
+		Sources:  sources,
+		From:     dt,
+		To:       dt,
+		Language: lang,
+		SortBy:   sortBy,
+		Page:     numPages,
 	}
 
 	// make URL arguments from options given above

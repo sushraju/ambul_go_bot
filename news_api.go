@@ -56,7 +56,8 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 
 	time.LoadLocation("America/Los_Angeles")
 	var (
-		dt       = time.Now().Format("2006-01-02")
+    from     = time.Now().AddDate(0, 0, -1).Format("2006-01-02")
+		to       = time.Now().Format("2006-01-02")
 		lang     = "en"
 		sortBy   = "relevancy"
 		numPages = 1
@@ -64,8 +65,8 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 
 	options := NewsAPIOptions{
 		Sources:  sources,
-		From:     dt,
-		To:       dt,
+		From:     from,
+		To:       to,
 		Language: lang,
 		SortBy:   sortBy,
 		Page:     numPages,

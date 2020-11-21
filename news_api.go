@@ -56,7 +56,7 @@ func (na *NewsAPI) GetEverything() (*NewsArticles, error) {
 
 	time.LoadLocation("America/Los_Angeles")
 	var (
-    from     = time.Now().AddDate(0, 0, -1).Format("2006-01-02")
+    	from     = time.Now().AddDate(0, 0, -1).Format("2006-01-02")
 		to       = time.Now().Format("2006-01-02")
 		lang     = "en"
 		sortBy   = "relevancy"

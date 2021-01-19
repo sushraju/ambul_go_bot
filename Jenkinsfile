@@ -10,6 +10,8 @@ pipeline {
       steps {
         sh '''
 echo $PWD
+go get github.com/dghubble/oauth1
+go get github.com/dghubble/go-twitter/twitter
 go build *.go
 '''
       }

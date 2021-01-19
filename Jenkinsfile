@@ -9,7 +9,9 @@ pipeline {
     stage('build') {
       steps {
         sh '''
-echo $PWD'''
+echo $PWD
+go version
+'''
       }
     }
 

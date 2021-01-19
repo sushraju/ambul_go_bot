@@ -10,7 +10,7 @@ pipeline {
       steps {
         sh '''
 echo $PWD
-go version
+go build *.go
 '''
       }
     }
